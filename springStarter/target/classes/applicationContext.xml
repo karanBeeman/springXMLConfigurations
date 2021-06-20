@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+
+<!--    <context:annotation-config/>-->
+<!--    <context:component-scan base-package="com.baeldung.applicationcontext"/>-->
+
+    <bean id="myFortune"
+            class="com.spring.core.xmlConfig.HappyFortuneService">
+    </bean>
+
+    <!--    setup constructor injection for dependency injection-->
+    <bean id="myCoach"
+          class="com.spring.core.xmlConfig.BaseballCoach">
+        <constructor-arg ref="myFortune"></constructor-arg>
+    </bean>
+
+    <bean id="mycricketCoach"
+           class="com.spring.core.xmlConfig.CricketCoach">
+        <property name="fortuneService" ref="myFortune"></property>
+
+        <property name="emailAddress" value="karankumar.beeman@gmail.com"></property>
+        <property name="team" value="India"></property>
+    </bean>
+
+</beans>

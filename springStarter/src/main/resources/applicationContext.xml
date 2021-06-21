@@ -10,6 +10,9 @@
 <!--    <context:annotation-config/>-->
 <!--    <context:component-scan base-package="com.baeldung.applicationcontext"/>-->
 
+<!--    to read the sport.properties-->
+    <context:property-placeholder location="classpath:sport.propeties"/>
+
     <bean id="myFortune"
             class="com.spring.core.xmlConfig.HappyFortuneService">
     </bean>
@@ -24,8 +27,13 @@
            class="com.spring.core.xmlConfig.CricketCoach">
         <property name="fortuneService" ref="myFortune"></property>
 
-        <property name="emailAddress" value="karankumar.beeman@gmail.com"></property>
-        <property name="team" value="India"></property>
+<!--        assigning literal values directly-->
+<!--        <property name="emailAddress" value="karankumar.beeman@gmail.com"></property>-->
+<!--        <property name="team" value="India"></property>-->
+
+<!--        reading literal values from sport.properties-->
+        <property name="emailAddress" value="${prop.email}"></property>
+        <property name="team" value="${prop.team}"></property>
     </bean>
 
 </beans>
